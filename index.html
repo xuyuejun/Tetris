@@ -1,9 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
+<html>
 
-    </head>
-    <body>
-        <script src="./main.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Tetris</title>
+</head>
+
+<body>
+    <!-- <div class="activityModel" ></div> -->
+</body>
+
+<script>
+    class Block {
+        // 移动
+        move() {
+            document.onkeydown = function (e) {
+                let activeModel = document.querySelector('.activityModel');
+                let left = parseInt(activeModel.style.left) ? parseInt(activeModel.style.left) : 0;
+                let top = parseInt(activeModel.style.top) ? parseInt(activeModel.style.top) : 0;
+                const key = e.keyCode;
+
+                switch (key) {
+                    //left
+                    case 37:
+                        activeModel.style.left = `${left - 20}px`;
+                        break;
+                        //up
+                    case 38:
+                        activeModel.style.top = `${top - 20}px`;
+                        break;
+                        //right
+                    case 39:
+                        activeModel.style.left = `${left + 20}px`;
+                        break;
+                        //down
+                    case 40:
+                        activeModel.style.top = `${top + 20}px`;
+                        break;
+                }
+
+
+                console.log(activeModel);
+                console.log(e);
+            }
+        }
+        // 初始化
+        init() {
+            let activeModel = document.createElement('div');
+            activeModel.className = 'activityModel';
+            document.body.appendChild(activeModel);
+        }
+    }
+
+    window.onload = () => {
+        let block = new Block;
+        block.move();
+        block.init();
+    };
+</script>
+
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .activityModel {
+        border: 1px;
+        width: 19px;
+        height: 19px;
+        background: red;
+        position: absolute;
+    }
+</style>
+
 </html>
